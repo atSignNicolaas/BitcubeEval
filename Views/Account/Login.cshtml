@@ -1,0 +1,36 @@
+@model Trainingfacility_Bitcube.Models.Account
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Login page</legend>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @if (@ViewBag.Message != null)
+        {
+            <div>
+                @ViewBag.Message
+            </div>
+        }
+        <table>
+            <tr>
+                <td>@Html.LabelFor(model => model.Username)</td>
+                <td>@Html.TextBoxFor(model => model.Username)</td>
+                <td>@Html.ValidationMessageFor(model => model.Username)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Password)</td>
+                <td>@Html.PasswordFor(model => model.Password)</td>
+                <td>@Html.ValidationMessageFor(model => model.Password)</td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Login"></td>
+            </tr>
+        </table>
+
+    </fieldset>
+}

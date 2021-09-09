@@ -17,9 +17,6 @@ D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Trai
 D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Trainingfacility_Bitcube.MvcApplicationPartsAssemblyInfo.cache
 D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Trainingfacility_Bitcube.RazorAssemblyInfo.cache
 D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Trainingfacility_Bitcube.RazorAssemblyInfo.cs
-D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\staticwebassets\Trainingfacility_Bitcube.StaticWebAssets.Manifest.cache
-D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\staticwebassets\Trainingfacility_Bitcube.StaticWebAssets.xml
-D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\scopedcss\bundle\Trainingfacility_Bitcube.styles.css
 D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Trainingfacility_Bitcube.TagHelpers.input.cache
 D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Trainingfacility_Bitcube.TagHelpers.output.cache
 D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Trainingfacility_Bitcube.RazorCoreGenerate.cache
@@ -161,3 +158,12 @@ D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Razo
 D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Razor\Views\Courses\Details.cshtml.g.cs
 D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Razor\Views\Courses\Edit.cshtml.g.cs
 D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Razor\Views\Courses\Index.cshtml.g.cs
+D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Razor\Views\Account\Dashboard.cshtml.g.cs
+D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
+D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Razor\Views\Lecturer\Dashboard.cshtml.g.cs
+D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\obj\Debug\net5.0\Razor\Views\Lecturer\Login.cshtml.g.cs
+D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+D:\Johan\Documents\BitcubeProject\Trainingfacility_Bitcube\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

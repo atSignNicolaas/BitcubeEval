@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Trainingfacility_Bitcube.Models;
@@ -19,10 +20,17 @@ namespace Trainingfacility_Bitcube.Controllers
         }
 
         // GET: Data
-        public async Task<IActionResult> Index()
+        //if lecturer is logged in show his/her related students only
+        public async Task<IActionResult> Index(int? id)
         {
-            var mvcDataContext = _context.Student.Include(s => s.Degree);
-            return View(await mvcDataContext.ToListAsync());
+             if (id != null){
+                var mvcDataContext = _context.Student.Include(d => d.Degree).Where(d => d.Degree.Lecturer.LecturerId == id);
+                return View(await mvcDataContext.ToListAsync());
+            }
+            else{
+                var mvcDataContext = _context.Student.Include(d => d.Degree);
+                return View(await mvcDataContext.ToListAsync());
+            }
         }
 
         // GET: Data/Details/5
@@ -60,12 +68,13 @@ namespace Trainingfacility_Bitcube.Controllers
         {
             if (ModelState.IsValid)
             {
+                //create firstname and surname based on forename or forename and surname
                 int space = student.Forename.IndexOf(" ");
                 student.Firstname = student.Forename.Substring(0, space);
                 student.Fullname = student.Forename + " " + student.Surname;
                 _context.Add(student);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Dashboard", "Lecturer", new {id = HttpContext.Session.GetInt32("UserId")});
             }
             ViewData["DegreeId"] = new SelectList(_context.Set<Degree>(), "DegreeId", "DegreeId", student.DegreeId);
             return View(student);

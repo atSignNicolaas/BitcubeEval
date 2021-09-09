@@ -18,6 +18,29 @@ namespace Trainingfacility_Bitcube.Migrations
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Trainingfacility_Bitcube.Models.Account", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("LecturerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LecturerId");
+
+                    b.ToTable("Account");
+                });
+
             modelBuilder.Entity("Trainingfacility_Bitcube.Models.Courses", b =>
                 {
                     b.Property<int>("CoursesId")
@@ -129,6 +152,17 @@ namespace Trainingfacility_Bitcube.Migrations
                     b.ToTable("Student");
                 });
 
+            modelBuilder.Entity("Trainingfacility_Bitcube.Models.Account", b =>
+                {
+                    b.HasOne("Trainingfacility_Bitcube.Models.Lecturer", "Lecturer")
+                        .WithMany("Account")
+                        .HasForeignKey("LecturerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Lecturer");
+                });
+
             modelBuilder.Entity("Trainingfacility_Bitcube.Models.Courses", b =>
                 {
                     b.HasOne("Trainingfacility_Bitcube.Models.Degree", "Degree")
@@ -171,6 +205,8 @@ namespace Trainingfacility_Bitcube.Migrations
 
             modelBuilder.Entity("Trainingfacility_Bitcube.Models.Lecturer", b =>
                 {
+                    b.Navigation("Account");
+
                     b.Navigation("Degree");
                 });
 #pragma warning restore 612, 618

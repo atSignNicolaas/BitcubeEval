@@ -1,7 +1,10 @@
 @model Trainingfacility_Bitcube.Models.Student
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 
 @{
     ViewData["Title"] = "Create";
+    var userid = HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
 }
 
 <h1>Create</h1>
@@ -54,7 +57,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Lecturer" asp-action="Dashboard" asp-route-id="@userid">Back to List</a>
 </div>
 
 @section Scripts {

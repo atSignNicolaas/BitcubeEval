@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Trainingfacility_Bitcube.Models;
 
 namespace Trainingfacility_Bitcube.Controllers
@@ -19,10 +20,18 @@ namespace Trainingfacility_Bitcube.Controllers
         }
 
         // GET: Degree
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            var mvcDataContext = _context.Degree.Include(d => d.Lecturer);
-            return View(await mvcDataContext.ToListAsync());
+            //display logged in lecturers degrees
+            if (id != null){
+                var mvcDataContext = _context.Degree.Include(d => d.Lecturer).Where(d => d.Lecturer.LecturerId == id);
+                return View(await mvcDataContext.ToListAsync());
+            }
+            else{
+                var mvcDataContext = _context.Degree.Include(d => d.Lecturer);
+                return View(await mvcDataContext.ToListAsync());
+            }
+            
         }
 
         // GET: Degree/Details/5
@@ -42,6 +51,7 @@ namespace Trainingfacility_Bitcube.Controllers
             {
                 return NotFound();
             }
+            // list all related courses to degree
             foreach (var y in coursesModel){
                 if (y.DegreeId == degree.DegreeId)
                 {

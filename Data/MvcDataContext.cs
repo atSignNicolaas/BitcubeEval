@@ -19,4 +19,8 @@ using Trainingfacility_Bitcube.Models;
         public DbSet<Trainingfacility_Bitcube.Models.Lecturer> Lecturer { get; set; }
 
         public DbSet<Trainingfacility_Bitcube.Models.Courses> Courses { get; set; }
+
+        public DbSet<Trainingfacility_Bitcube.Models.Account> Account { get; set; }
+
+        //public DbSet<Trainingfacility_Bitcube.Models.AllInOneModel> AllInOneModels { get; set; }
     }

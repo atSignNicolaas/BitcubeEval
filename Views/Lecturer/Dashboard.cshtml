@@ -1,0 +1,121 @@
+@model Trainingfacility_Bitcube.Models.ViewModel
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{  
+    ViewBag.Title = "User DashBoard";
+}  
+  
+<fieldset>  
+    <h1><legend class = "col-sm-2">DashBoard</legend> </h1> 
+  
+    @if(HttpContextAccessor.HttpContext.Session.GetString("UserId") != null) { 
+        <div class = "col-sm-10"><text>Welcome @HttpContextAccessor.HttpContext.Session.GetString("Username")</text></div>  
+    }
+    <hr>
+    @*<dl>
+        <dt class = "col-sm-2">
+            Manage
+        </dt>
+        <dd class = "col-sm-10">
+             <a asp-controller="Student" asp-action="Index" style="text-decoration: none; color: grey;" asp-route-id="@Model.le">Students</a> |
+             <a asp-controller="Degree" asp-action="Index" style="text-decoration: none; color: grey;" asp-route-id="@Model.Lecturer.LecturerId">Degrees</a>
+        </dd>
+    </dl>*@
+        
+</fieldset>
+
+<p><b>Student List</b></p>
+
+<p>
+    <a asp-controller="Student" asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Forename
+            </th>
+            <th>
+                Surname
+            </th>
+            <th>
+                Date of Birth
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Fullname
+            </th>
+            <th>
+                Degree
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (Student item in Model.Student) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Forename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dateofbirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Degree.Name)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<p><b>Degree List</b></p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Duration(Years)
+            </th>
+            <th>
+                Lecturer
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (Degree item in Model.Degree) {
+        <tr>
+            <td>
+                <a asp-controller="Degree" asp-action="Details" asp-route-id="@item.DegreeId">@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lecturer.Fullname)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
