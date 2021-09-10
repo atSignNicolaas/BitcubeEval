@@ -59,7 +59,7 @@ namespace Trainingfacility_Bitcube.Controllers
             if (ModelState.IsValid)
             {
                 //create firstname and forename based on forename or forename and surname
-                int space = lecturer.Forename.IndexOf(" ");
+                int space = lecturer.Forename.IndexOf(" ") == -1 ? lecturer.Forename.Length : lecturer.Forename.IndexOf(" ");
                 lecturer.Firstname = lecturer.Forename.Substring(0, space);
                 lecturer.Fullname = lecturer.Forename + " " + lecturer.Surname;
                 _context.Add(lecturer);
@@ -200,7 +200,7 @@ namespace Trainingfacility_Bitcube.Controllers
         //Retrieve data from database and return list
         public List<Student> GetStudent(int? id){
             if (id != null){
-                List<Student> mvcDataContext = _context.Student.Include(d => d.Degree).Where(d => d.Degree.Lecturer.LecturerId == id).ToList();
+                List<Student> mvcDataContext = _context.Student.Include(d => d.Degree).Where(d => d.Degree.Lecturer.LecturerId == id || d.Degree.Lecturer.LecturerId == 0).ToList();
                 return mvcDataContext;
             }
             else{

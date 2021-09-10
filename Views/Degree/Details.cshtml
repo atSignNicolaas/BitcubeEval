@@ -1,4 +1,4 @@
-@model Trainingfacility_Bitcube.Models.Degree
+@model IEnumerable<Trainingfacility_Bitcube.Models.Student>
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 @{
@@ -38,6 +38,68 @@
         </dd>
     </dl>
 </div>
+
+<p><b>Student List</b></p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Forename
+            </th>
+            <th>
+                Surname
+            </th>
+            <th>
+                Date of Birth
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Fullname
+            </th>
+            <th>
+                Degree
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Forename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dateofbirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Degree.Name)
+            </td>
+            <td>
+                <a asp-controller="Student" asp-action="Edit" asp-route-id="@item.StudentId">Enrol/Remove</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
 <div>
     @*<a asp-action="Edit" asp-route-id="@Model.DegreeId">Edit</a> |*@
     <a asp-controller="Lecturer" asp-action="Dashboard" asp-route-id="@userid">Back to List</a>

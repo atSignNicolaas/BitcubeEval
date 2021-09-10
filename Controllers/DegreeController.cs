@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
@@ -47,6 +48,7 @@ namespace Trainingfacility_Bitcube.Controllers
             var degree = await _context.Degree
                 .Include(d => d.Lecturer)
                 .FirstOrDefaultAsync(m => m.DegreeId == id);
+            HttpContext.Session.SetInt32("DegreeId", degree.DegreeId); 
             if (degree == null)
             {
                 return NotFound();
@@ -66,8 +68,9 @@ namespace Trainingfacility_Bitcube.Controllers
                 }
                 
             }
+            var students =  _context.Student.Include(d => d.Degree).Where(d => d.Degree.DegreeId == id || d.Degree.DegreeId == 0).ToList();
             ViewData["relatedcourses"] = courseNames;
-            return View(degree);
+            return View(students);
         }
 
         // GET: Degree/Create
@@ -180,6 +183,17 @@ namespace Trainingfacility_Bitcube.Controllers
         private bool DegreeExists(int id)
         {
             return _context.Degree.Any(e => e.DegreeId == id);
+        }
+
+        public List<Student> GetStudent(int? id){
+            if (id != null){
+                List<Student> mvcDataContext = _context.Student.Include(d => d.Degree).Where(d => d.Degree.DegreeId == id || d.Degree.DegreeId == 0).ToList();
+                return mvcDataContext;
+            }
+            else{
+                List<Student> mvcDataContext = _context.Student.Include(d => d.Degree).ToList();
+                return mvcDataContext;
+            }
         }
     }
 }

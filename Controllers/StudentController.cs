@@ -64,14 +64,15 @@ namespace Trainingfacility_Bitcube.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentId,Forename,Surname,Dateofbirth,Email,DegreeId")] Student student)
+        public async Task<IActionResult> Create([Bind("StudentId,Forename,Surname,Dateofbirth,Email")] Student student)
         {
             if (ModelState.IsValid)
             {
                 //create firstname and surname based on forename or forename and surname
-                int space = student.Forename.IndexOf(" ");
+                int space = student.Forename.IndexOf(" ") == -1 ? student.Forename.Length : student.Forename.IndexOf(" ");
                 student.Firstname = student.Forename.Substring(0, space);
                 student.Fullname = student.Forename + " " + student.Surname;
+                student.DegreeId = 0;
                 _context.Add(student);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Dashboard", "Lecturer", new {id = HttpContext.Session.GetInt32("UserId")});
@@ -104,6 +105,7 @@ namespace Trainingfacility_Bitcube.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("StudentId,Forename,Surname,Dateofbirth,Email,Firstname,Fullname,DegreeId")] Student student)
         {
+            int sid = student.StudentId;
             if (id != student.StudentId)
             {
                 return NotFound();
@@ -127,7 +129,7 @@ namespace Trainingfacility_Bitcube.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Degree", new { id = HttpContext.Session.GetInt32("DegreeId")});
             }
             ViewData["DegreeId"] = new SelectList(_context.Set<Degree>(), "DegreeId", "DegreeId", student.DegreeId);
             return View(student);
